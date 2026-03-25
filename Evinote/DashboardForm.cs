@@ -34,9 +34,12 @@ namespace Evinote
             try
             {
                 var response = await _client.GetAsync("http://localhost:5173/api/users");
+<<<<<<< HEAD
                 // táblák számához /api/boards betoltese, user.id == board.owner
 
                 int tablakszama = 1; // szamolja meg irja ezt at
+=======
+>>>>>>> 4d6507c4a0d539618162f70e01a13d1c5ca41d1c
 
                 var json = await response.Content.ReadAsStringAsync();
 
@@ -63,6 +66,7 @@ namespace Evinote
                 foreach (var user in users)
                 {
                     var rowIndex = dataGridView1.Rows.Add(
+<<<<<<< HEAD
                         user.id,
                         user.username,
                         user.email,
@@ -70,6 +74,12 @@ namespace Evinote
                         user.updated_at.ToString("yyyy-MM-dd"),
                         $"{tablakszama} tabla"
                         
+=======
+                        user.username,
+                        user.email,
+                        user.created_at.ToString("yyyy-MM-dd"),
+                        user.updated_at.ToString("yyyy-MM-dd")
+>>>>>>> 4d6507c4a0d539618162f70e01a13d1c5ca41d1c
                     );
                     dataGridView1.Rows[rowIndex].Tag = user; // Store the UserDto
                 }
@@ -103,9 +113,12 @@ namespace Evinote
             }
         }
 
+<<<<<<< HEAD
         //ha bele klikkelek a táblák száma nevű oszlopba nyissa meg a UserBoardFormot a kiválasztott user adataival
 
 
+=======
+>>>>>>> 4d6507c4a0d539618162f70e01a13d1c5ca41d1c
         private async void DeleteBtn_Click(object sender, EventArgs e)
         {
             if (dataGridView1.CurrentRow == null)
@@ -131,6 +144,7 @@ namespace Evinote
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+<<<<<<< HEAD
             //ha a TableCountszáma nevű oszlopra kattintok akkor nyissa meg a UserBoardFormot
             if (e.ColumnIndex == 4 && e.RowIndex >= 0) // TableCount oszlop indexe
             {
@@ -138,6 +152,8 @@ namespace Evinote
                 dashboards.Show();
                 Hide();
             }
+=======
+>>>>>>> 4d6507c4a0d539618162f70e01a13d1c5ca41d1c
 
         }
     }

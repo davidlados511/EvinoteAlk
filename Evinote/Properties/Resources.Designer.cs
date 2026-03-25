@@ -69,6 +69,7 @@ namespace Evinote.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+<<<<<<< HEAD
         
         /// <summary>
         ///   Looks up a localized string similar to .
@@ -78,5 +79,7 @@ namespace Evinote.Properties {
                 return ResourceManager.GetString("sessionToken", resourceCulture);
             }
         }
+=======
+>>>>>>> 4d6507c4a0d539618162f70e01a13d1c5ca41d1c
     }
 }

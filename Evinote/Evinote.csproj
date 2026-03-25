@@ -127,6 +127,7 @@
     </Compile>
     <Compile Include="HashPassword.cs" />
     <Compile Include="LoginRequest.cs" />
+<<<<<<< HEAD
     <Compile Include="LoginResponse.cs" />
     <Compile Include="MainForm.cs" />
     <Compile Include="Program.cs" />
@@ -137,6 +138,11 @@
     <Compile Include="UserBoards.Designer.cs">
       <DependentUpon>UserBoards.cs</DependentUpon>
     </Compile>
+=======
+    <Compile Include="MainForm.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+>>>>>>> 4d6507c4a0d539618162f70e01a13d1c5ca41d1c
     <Compile Include="UserDto.cs" />
     <EmbeddedResource Include="DashboardForm.resx">
       <DependentUpon>DashboardForm.cs</DependentUpon>
@@ -154,9 +160,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+<<<<<<< HEAD
     <EmbeddedResource Include="UserBoards.resx">
       <DependentUpon>UserBoards.cs</DependentUpon>
     </EmbeddedResource>
+=======
+>>>>>>> 4d6507c4a0d539618162f70e01a13d1c5ca41d1c
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
