@@ -112,6 +112,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BoardDto.cs" />
     <Compile Include="Components\Theme.cs" />
     <Compile Include="DashboardForm.cs">
       <SubType>Form</SubType>

@@ -56,15 +56,14 @@ private HttpClient _client;
 
             foreach (var user in users)  
             {  
-                int tablakszama = 1; // TODO: később API-ból számolni  
 
                 var rowIndex = dataGridView1.Rows.Add(  
                     user.id,  
                     user.username,  
                     user.email,  
                     user.created_at.ToString("yyyy-MM-dd"),  
-                    user.updated_at.ToString("yyyy-MM-dd"),  
-                    $"{tablakszama} tabla"  
+                    user.updated_at.ToString("yyyy-MM-dd"),
+                    "Show boards"
                 );  
 
                 dataGridView1.Rows[rowIndex].Tag = user;  
@@ -119,21 +118,18 @@ private HttpClient _client;
             return;  
 
         await DeleteUser(selectedUser.id);  
+    }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 5 && e.RowIndex >= 0)
+            {
+                var selectedUser = (UserDto)dataGridView1.Rows[e.RowIndex].Tag;
+
+                var dashboards = new UserBoards(selectedUser.id.ToString());
+                dashboards.ShowDialog();
+            }
+        }
     }  
-
-    private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)  
-    {  
-        // ha a TableCount oszlopra kattintanak  
-        if (e.ColumnIndex == 5 && e.RowIndex >= 0)  
-        {  
-            var selectedUser = (UserDto)dataGridView1.Rows[e.RowIndex].Tag;  
-
-            var dashboards = new UserBoards(selectedUser.username);  
-            dashboards.Show();  
-            Hide();  
-        }  
-    }  
-}  
-
 
 }

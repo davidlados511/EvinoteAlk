@@ -44,7 +44,7 @@ namespace Evinote
             OpenDashboard();
         }
 
-        private static string ReadSavedApiKey()
+        public static string ReadSavedApiKey()
         {
             try
             {
