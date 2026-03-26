@@ -1,6 +1,5 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -8,153 +7,134 @@ using System.Windows.Forms;
 
 namespace Evinote
 {
-    public partial class DashboardForm : Form
-    {
-        private HttpClient _client;
+public partial class DashboardForm : Form
+{
+private HttpClient _client;
 
-        public DashboardForm(HttpClient client)
-        {
-            InitializeComponent();
-            _client = client;
-            this.Load += DashboardForm_Load;
-            Theme.Apply(this);
+```
+    public DashboardForm(HttpClient client)  
+    {  
+        InitializeComponent();  
+        _client = client;  
+        this.Load += DashboardForm_Load;  
+        Theme.Apply(this);  
 
-            Theme.StyleDeleteButton(DeleteBtn);
+        Theme.StyleDeleteButton(DeleteBtn);  
+        Theme.StyleDataGrid(dataGridView1);  
+    }  
 
-            Theme.StyleDataGrid(dataGridView1);
-        }
+    private async void DashboardForm_Load(object sender, EventArgs e)  
+    {  
+        await LoadUsers();  
+    }  
 
-        private async void DashboardForm_Load(object sender, EventArgs e)
-        {
-            await LoadUsers();
-        }
+    private async Task LoadUsers()  
+    {  
+        try  
+        {  
+            var response = await _client.GetAsync("http://localhost:5173/api/users");  
+            var json = await response.Content.ReadAsStringAsync();  
 
-        private async System.Threading.Tasks.Task LoadUsers()
-        {
-            try
-            {
-                var response = await _client.GetAsync("http://localhost:5173/api/users");
-<<<<<<< HEAD
-                // táblák számához /api/boards betoltese, user.id == board.owner
+            if (!response.IsSuccessStatusCode)  
+            {  
+                MessageBox.Show("Hiba az API hívásnál");  
+                return;  
+            }  
 
-                int tablakszama = 1; // szamolja meg irja ezt at
-=======
->>>>>>> 4d6507c4a0d539618162f70e01a13d1c5ca41d1c
+            var users = JsonSerializer.Deserialize<List<UserDto>>(json,  
+                new JsonSerializerOptions  
+                {  
+                    PropertyNameCaseInsensitive = true  
+                });  
 
-                var json = await response.Content.ReadAsStringAsync();
+            dataGridView1.Rows.Clear();  
 
-                if (!response.IsSuccessStatusCode)
-                {
-                    MessageBox.Show("Hiba az API hívásnál");
-                    return;
-                }
+            if (users == null)  
+            {  
+                MessageBox.Show("Null a users lista");  
+                return;  
+            }  
 
-                var users = JsonSerializer.Deserialize<List<UserDto>>(json,
-                    new JsonSerializerOptions
-                    {
-                        PropertyNameCaseInsensitive = true
-                    });
+            foreach (var user in users)  
+            {  
+                int tablakszama = 1; // TODO: később API-ból számolni  
 
-                dataGridView1.Rows.Clear();
+                var rowIndex = dataGridView1.Rows.Add(  
+                    user.id,  
+                    user.username,  
+                    user.email,  
+                    user.created_at.ToString("yyyy-MM-dd"),  
+                    user.updated_at.ToString("yyyy-MM-dd"),  
+                    $"{tablakszama} tabla"  
+                );  
 
-                if (users == null)
-                {
-                    MessageBox.Show("Null a users lista");
-                    return;
-                }
+                dataGridView1.Rows[rowIndex].Tag = user;  
+            }  
+        }  
+        catch (Exception ex)  
+        {  
+            MessageBox.Show(ex.ToString());  
+        }  
+    }  
 
-                foreach (var user in users)
-                {
-                    var rowIndex = dataGridView1.Rows.Add(
-<<<<<<< HEAD
-                        user.id,
-                        user.username,
-                        user.email,
-                        user.created_at.ToString("yyyy-MM-dd"),
-                        user.updated_at.ToString("yyyy-MM-dd"),
-                        $"{tablakszama} tabla"
-                        
-=======
-                        user.username,
-                        user.email,
-                        user.created_at.ToString("yyyy-MM-dd"),
-                        user.updated_at.ToString("yyyy-MM-dd")
->>>>>>> 4d6507c4a0d539618162f70e01a13d1c5ca41d1c
-                    );
-                    dataGridView1.Rows[rowIndex].Tag = user; // Store the UserDto
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
-        }
+    public async Task DeleteUser(int id)  
+    {  
+        try  
+        {  
+            var response = await _client.DeleteAsync($"http://localhost:5173/api/users/{id}");  
 
-        public async Task DeleteUser(int id)
-        {
-            try
-            {
-                var response = await _client.DeleteAsync($"http://localhost:5173/api/users/{id}");
+            if (response.IsSuccessStatusCode)  
+            {  
+                MessageBox.Show("Felhasználó törölve!");  
+            }  
+            else  
+            {  
+                var error = await response.Content.ReadAsStringAsync();  
+                MessageBox.Show("Hiba: " + error + "\n" + "id: " + id);  
+            }  
+        }  
+        catch (Exception ex)  
+        {  
+            MessageBox.Show(ex.ToString());  
+        }  
+    }  
 
-                if (response.IsSuccessStatusCode)
-                {
-                    MessageBox.Show("Felhasználó törölve!");
-                }
-                else
-                {
-                    var error = await response.Content.ReadAsStringAsync();
-                    MessageBox.Show("Hiba: " + error + "\n" + "id: " + id);
-                  
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
-        }
+    private async void DeleteBtn_Click(object sender, EventArgs e)  
+    {  
+        if (dataGridView1.CurrentRow == null)  
+        {  
+            MessageBox.Show("Nincs kiválasztott felhasználó!");  
+            return;  
+        }  
 
-<<<<<<< HEAD
-        //ha bele klikkelek a táblák száma nevű oszlopba nyissa meg a UserBoardFormot a kiválasztott user adataival
+        var selectedUser = (UserDto)dataGridView1.CurrentRow.Tag;  
 
+        var confirm = MessageBox.Show(  
+            $"Biztosan törölni szeretnéd ezt a felhasználót?\n\n{selectedUser.username}",  
+            "Megerősítés",  
+            MessageBoxButtons.YesNo,  
+            MessageBoxIcon.Warning  
+        );  
 
-=======
->>>>>>> 4d6507c4a0d539618162f70e01a13d1c5ca41d1c
-        private async void DeleteBtn_Click(object sender, EventArgs e)
-        {
-            if (dataGridView1.CurrentRow == null)
-            {
-                MessageBox.Show("Nincs kiválasztott felhasználó!");
-                return;
-            }
+        if (confirm != DialogResult.Yes)  
+            return;  
 
-            var selectedUser = (UserDto)dataGridView1.CurrentRow.Tag;
+        await DeleteUser(selectedUser.id);  
+    }  
 
-                var confirm = MessageBox.Show(
-                $"Biztosan törölni szeretnéd ezt a felhasználót?\n\n{selectedUser.username}",
-                "Megerősítés",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Warning
-            );
+    private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)  
+    {  
+        // ha a TableCount oszlopra kattintanak  
+        if (e.ColumnIndex == 5 && e.RowIndex >= 0)  
+        {  
+            var selectedUser = (UserDto)dataGridView1.Rows[e.RowIndex].Tag;  
 
-            if (confirm != DialogResult.Yes)
-                return;
+            var dashboards = new UserBoards(selectedUser.username);  
+            dashboards.Show();  
+            Hide();  
+        }  
+    }  
+}  
+```
 
-            await DeleteUser(selectedUser.id);
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-<<<<<<< HEAD
-            //ha a TableCountszáma nevű oszlopra kattintok akkor nyissa meg a UserBoardFormot
-            if (e.ColumnIndex == 4 && e.RowIndex >= 0) // TableCount oszlop indexe
-            {
-                var dashboards = new UserBoards("user");
-                dashboards.Show();
-                Hide();
-            }
-=======
->>>>>>> 4d6507c4a0d539618162f70e01a13d1c5ca41d1c
-
-        }
-    }
 }
