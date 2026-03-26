@@ -34,19 +34,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.DeleteBtn = new System.Windows.Forms.Button();
-<<<<<<< HEAD
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-=======
->>>>>>> 4d6507c4a0d539618162f70e01a13d1c5ca41d1c
             this.NameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RegDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LiveSess = new System.Windows.Forms.DataGridViewTextBoxColumn();
-<<<<<<< HEAD
             this.TableCount = new System.Windows.Forms.DataGridViewButtonColumn();
-=======
-            this.TableCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
->>>>>>> 4d6507c4a0d539618162f70e01a13d1c5ca41d1c
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -70,17 +63,11 @@
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Fuchsia;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-<<<<<<< HEAD
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Id,
-=======
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
->>>>>>> 4d6507c4a0d539618162f70e01a13d1c5ca41d1c
             this.NameColumn,
             this.Email,
             this.RegDate,
@@ -97,11 +84,7 @@
             this.dataGridView1.GridColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.dataGridView1.Location = new System.Drawing.Point(-1, -1);
             this.dataGridView1.Name = "dataGridView1";
-<<<<<<< HEAD
-            this.dataGridView1.Size = new System.Drawing.Size(472, 563);
-=======
             this.dataGridView1.Size = new System.Drawing.Size(537, 563);
->>>>>>> 4d6507c4a0d539618162f70e01a13d1c5ca41d1c
             this.dataGridView1.TabIndex = 2;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -116,14 +99,11 @@
             this.DeleteBtn.UseVisualStyleBackColor = true;
             this.DeleteBtn.Click += new System.EventHandler(this.DeleteBtn_Click);
             // 
-<<<<<<< HEAD
             // Id
             // 
             this.Id.HeaderText = "Id";
             this.Id.Name = "Id";
             // 
-=======
->>>>>>> 4d6507c4a0d539618162f70e01a13d1c5ca41d1c
             // NameColumn
             // 
             this.NameColumn.HeaderText = "Név";
@@ -153,12 +133,9 @@
             this.TableCount.HeaderText = "Táblák száma";
             this.TableCount.Name = "TableCount";
             this.TableCount.ReadOnly = true;
-<<<<<<< HEAD
             this.TableCount.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.TableCount.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.TableCount.Text = "xdgd";
-=======
->>>>>>> 4d6507c4a0d539618162f70e01a13d1c5ca41d1c
             // 
             // DashboardForm
             // 
@@ -186,18 +163,11 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button DeleteBtn;
-<<<<<<< HEAD
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
-=======
->>>>>>> 4d6507c4a0d539618162f70e01a13d1c5ca41d1c
         private System.Windows.Forms.DataGridViewTextBoxColumn NameColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn Email;
         private System.Windows.Forms.DataGridViewTextBoxColumn RegDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn LiveSess;
-<<<<<<< HEAD
         private System.Windows.Forms.DataGridViewButtonColumn TableCount;
-=======
-        private System.Windows.Forms.DataGridViewTextBoxColumn TableCount;
->>>>>>> 4d6507c4a0d539618162f70e01a13d1c5ca41d1c
     }
 }

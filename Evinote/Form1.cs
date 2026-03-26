@@ -1,14 +1,8 @@
-<<<<<<< HEAD
-﻿using Evinote.Properties;
+using Evinote.Properties;
 using Isopoh.Cryptography.Argon2;
 using Konscious.Security.Cryptography;
 using System;
 using System.IO;
-=======
-﻿using Isopoh.Cryptography.Argon2;
-using Konscious.Security.Cryptography;
-using System;
->>>>>>> 4d6507c4a0d539618162f70e01a13d1c5ca41d1c
 using System.Net.Http;
 using System.Security.Cryptography;
 using System.Text;
@@ -20,13 +14,10 @@ namespace Evinote
     public partial class Form1 : Form
     {
         private static readonly HttpClient client = new HttpClient();
-<<<<<<< HEAD
         private static readonly string SessionFilePath = Path.Combine(
             Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
             "Evinote",
             "session.key");
-=======
->>>>>>> 4d6507c4a0d539618162f70e01a13d1c5ca41d1c
 
         public Form1()
         {
@@ -39,7 +30,6 @@ namespace Evinote
             Theme.StyleTextBox(PassInput);
 
             Theme.StyleDeleteButton(LoginBtn);
-<<<<<<< HEAD
 
             TryAutoLogin();
         }
@@ -84,8 +74,6 @@ namespace Evinote
             var dashboard = new DashboardForm(client);
             dashboard.Show();
             Hide();
-=======
->>>>>>> 4d6507c4a0d539618162f70e01a13d1c5ca41d1c
         }
 
 
@@ -109,7 +97,6 @@ namespace Evinote
             {
                 var response = await client.PostAsync("http://localhost:5173/api/auth/login", content);
                 var responseBody = await response.Content.ReadAsStringAsync();
-<<<<<<< HEAD
                 var parsedResponse = JsonSerializer.Deserialize<LoginResponse>(responseBody);
 
                 if (response.IsSuccessStatusCode)
@@ -121,18 +108,6 @@ namespace Evinote
 
                     MessageBox.Show($"Sikeres bejelentkezés! api kulcs: {parsedResponse.key}");
                     OpenDashboard();
-=======
-
-                if (response.IsSuccessStatusCode)
-                {
-                    MessageBox.Show("Sikeres bejelentkezés!");
-
-                    DashboardForm dashboard = new DashboardForm(client);
-
-                    dashboard.Show();
-
-                    this.Hide();
->>>>>>> 4d6507c4a0d539618162f70e01a13d1c5ca41d1c
                 }
                 else
                 {
