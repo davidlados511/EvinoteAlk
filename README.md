@@ -12,10 +12,7 @@ Célja, hogy a felhasználók, táblák és sessionök kezelését, megtekintés
 3. 🛠️ Telepítés
 4. ▶️ Használat
 5. 📁 Projekt struktúra
-6. 🧪 Tesztelés
-7. 👥 Contributing / Közreműködés
-8. 📜 Licenc
-9. 📞 Kapcsolat / Készítők
+6. 📞  Készítők
 
 ---
 
@@ -59,3 +56,27 @@ Az alkalmazás így teljes körűen lehetővé teszi az adatbázisok kezelését
 ---
 
 ### 📦 Lépések
+- Töltsük le a Zip fájlt
+- Csomagoljuk ki az asztalra
+- Evinote.exe fájlt telepítsük
+- Terminálból indítsuk el a Backendet
+- Majd futassuk
+
+---
+
+### ▶️ Használat
+- Törlés funkció: Felhasználók törlésére szolgál | Jelöljük ki a törölni kívánt felhasználót és nyomjunk a törlés gombra.
+- Show Sessions funkció: Aktivitásokat listáz | Csak megtekintésre alkalmas
+- Show Boards funckió: A Táblák kezelésére szolgáló menüpont | Jelöljük ki a törölni kívánt táblát és nyomjunk a törlés gombra | Jelöljük ki a módosítani kívánt táblát majd az "Új név:" bemeneti formátumra kattintva adjuk meg az új nevet, majd nyomjunk a Módosítás gombra
+
+---
+
+### 📁 Projekt struktúra
+- IDE JÖN MAJD
+
+---
+
+### 📞 Készítők
+- Drávucz Patrik
+- Lados Dávid
+- Notheisz Domonkos Mátyás
