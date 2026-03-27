@@ -38,7 +38,7 @@
             this.NameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RegDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LiveSess = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LiveSess = new System.Windows.Forms.DataGridViewButtonColumn();
             this.TableCount = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -84,7 +84,7 @@
             this.dataGridView1.GridColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.dataGridView1.Location = new System.Drawing.Point(-1, -1);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(537, 563);
+            this.dataGridView1.Size = new System.Drawing.Size(560, 563);
             this.dataGridView1.TabIndex = 2;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -127,6 +127,8 @@
             this.LiveSess.HeaderText = "Élő Sessionok";
             this.LiveSess.Name = "LiveSess";
             this.LiveSess.ReadOnly = true;
+            this.LiveSess.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.LiveSess.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // TableCount
             // 
@@ -167,7 +169,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn NameColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn Email;
         private System.Windows.Forms.DataGridViewTextBoxColumn RegDate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn LiveSess;
+        private System.Windows.Forms.DataGridViewButtonColumn LiveSess;
         private System.Windows.Forms.DataGridViewButtonColumn TableCount;
     }
 }
