@@ -21,27 +21,14 @@ namespace Evinote
 
         public Form1()
         {
-
             InitializeComponent();
+
             PassInput.UseSystemPasswordChar = true;
             Theme.Apply(this);
 
             Theme.StyleTextBox(UserInput);
             Theme.StyleTextBox(PassInput);
-
             Theme.StyleDeleteButton(LoginBtn);
-
-            TryAutoLogin();
-        }
-
-        private void TryAutoLogin()
-        {
-            var savedKey = ReadSavedApiKey();
-
-            if (string.IsNullOrWhiteSpace(savedKey))
-                return;
-
-            OpenDashboard();
         }
 
         public static string ReadSavedApiKey()

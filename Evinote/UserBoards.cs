@@ -119,6 +119,7 @@ namespace Evinote
                             {
                                 // 1. API hívás összeállítása (DELETE metódus)
                                 var url = $"http://localhost:5173/api/boards/{selectedBoard.Id}";
+                                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Form1.ReadSavedApiKey());
                                 var response = await client.DeleteAsync(url);
 
                                 if (response.IsSuccessStatusCode)
@@ -130,7 +131,7 @@ namespace Evinote
                                 }
                                 else
                                 {
-                                    // Itt jöhet vissza a HTML hiba, ha pl. nincs bejelentkezve
+                                    // Itt jöhet vissza a HTML hiba, ha pl. nincs bejelentkezvein vagy nincs jogosultság
                                     var errorRaw = await response.Content.ReadAsStringAsync();
                                     MessageBox.Show($"Hiba a törlés során: {response.StatusCode}");
                                 }
@@ -155,6 +156,66 @@ namespace Evinote
             {
                 updateBtnTextBox.Clear();
             }
+        }
+
+        private async void updateBtn_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                var selectedBoard = dataGridView1.SelectedRows[0].Tag as BoardDto;
+                if (selectedBoard != null)
+                {
+                    var newName = updateBtnTextBox.Text.Trim();
+                    if (string.IsNullOrEmpty(newName))
+                    {
+                        MessageBox.Show("Kérlek, adj meg egy új nevet a boardnak!");
+                        return;
+                    }
+                    // Itt jöhetne egy API hívás a board nevének frissítésére
+                    var confirmResult = MessageBox.Show(
+                        $"Szeretnéd megváltoztatni a '{selectedBoard.Name}' nevét '{newName}'-re?",
+                        "Név módosítás megerősítése",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question);
+                    if (confirmResult == DialogResult.Yes)
+                    {
+                        try
+                        {
+                            using (var client = new HttpClient())
+                            {
+                                var url = $"http://localhost:5173/api/boards/{selectedBoard.Id}";
+                                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Form1.ReadSavedApiKey());
+                                var content = new StringContent(JsonSerializer.Serialize(new { name = newName }), System.Text.Encoding.UTF8, "application/json");
+                                
+                                var request = new HttpRequestMessage(new HttpMethod("PATCH"), url)
+                                {
+                                    Content = content
+                                };
+                                var response = await client.SendAsync(request);
+
+                                if (response.IsSuccessStatusCode)
+                                {
+                                    MessageBox.Show("Sikeres név módosítás!");
+                                    await LoadBoards();
+                                }
+                                else
+                                {
+                                    MessageBox.Show($"Hiba a név módosítása során: {response.StatusCode}");
+                                }
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Hiba történt a hálózati kommunikáció során: " + ex.Message);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Kérlek, jelöld ki a teljes sort a név módosításához! (Kattints a sor elejére)");
+            }
+
         }
     }
 }

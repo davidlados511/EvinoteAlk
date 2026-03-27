@@ -79,11 +79,14 @@ private HttpClient _client;
     {  
         try  
         {  
+            _client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", Form1.ReadSavedApiKey());
             var response = await _client.DeleteAsync($"http://localhost:5173/api/users/{id}");  
+
 
             if (response.IsSuccessStatusCode)  
             {  
-                MessageBox.Show("Felhasználó törölve!");  
+                MessageBox.Show("Felhasználó törölve!");
+                    await LoadUsers();
             }  
             else  
             {  

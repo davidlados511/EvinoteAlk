@@ -29,19 +29,19 @@
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.deleteBoardBtn = new System.Windows.Forms.Button();
-            this.updateBtn = new System.Windows.Forms.Button();
-            this.updateBtnTextBox = new System.Windows.Forms.TextBox();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.updateBtn = new System.Windows.Forms.Button();
+            this.deleteBoardBtn = new System.Windows.Forms.Button();
+            this.updateBtnTextBox = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1.SuspendLayout();
-            this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -58,23 +58,6 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.49425F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(732, 379);
             this.tableLayoutPanel1.TabIndex = 0;
-            // 
-            // tableLayoutPanel2
-            // 
-            this.tableLayoutPanel2.ColumnCount = 3;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 32.08906F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 34.5776F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel2.Controls.Add(this.updateBtn, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.deleteBoardBtn, 2, 0);
-            this.tableLayoutPanel2.Controls.Add(this.updateBtnTextBox, 1, 0);
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 315);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 1;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(732, 64);
-            this.tableLayoutPanel2.TabIndex = 1;
             // 
             // dataGridView1
             // 
@@ -93,39 +76,6 @@
             this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.dataGridView1.Size = new System.Drawing.Size(718, 329);
             this.dataGridView1.TabIndex = 0;
-            // 
-            // deleteBoardBtn
-            // 
-            this.deleteBoardBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.deleteBoardBtn.Location = new System.Drawing.Point(490, 3);
-            this.deleteBoardBtn.Name = "deleteBoardBtn";
-            this.deleteBoardBtn.Size = new System.Drawing.Size(239, 58);
-            this.deleteBoardBtn.TabIndex = 0;
-            this.deleteBoardBtn.Text = "Törlés";
-            this.deleteBoardBtn.UseVisualStyleBackColor = true;
-            this.deleteBoardBtn.Click += new System.EventHandler(this.deleteBoardBtn_Click);
-            // 
-            // updateBtn
-            // 
-            this.updateBtn.Location = new System.Drawing.Point(3, 3);
-            this.updateBtn.Name = "updateBtn";
-            this.updateBtn.Size = new System.Drawing.Size(228, 58);
-            this.updateBtn.TabIndex = 1;
-            this.updateBtn.Text = "Módosítás";
-            this.updateBtn.UseVisualStyleBackColor = true;
-            // 
-            // updateBtnTextBox
-            // 
-            this.updateBtnTextBox.AccessibleName = "";
-            this.updateBtnTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.updateBtnTextBox.Location = new System.Drawing.Point(237, 3);
-            this.updateBtnTextBox.Multiline = true;
-            this.updateBtnTextBox.Name = "updateBtnTextBox";
-            this.updateBtnTextBox.Size = new System.Drawing.Size(247, 58);
-            this.updateBtnTextBox.TabIndex = 2;
-            this.updateBtnTextBox.Text = "Új név:";
-            this.updateBtnTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.updateBtnTextBox.Click += new System.EventHandler(this.updateBtnTextBox_Click);
             // 
             // Column1
             // 
@@ -157,6 +107,57 @@
             this.Column5.Name = "Column5";
             this.Column5.ReadOnly = true;
             // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.ColumnCount = 3;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 32.08906F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 34.5776F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel2.Controls.Add(this.updateBtn, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.deleteBoardBtn, 2, 0);
+            this.tableLayoutPanel2.Controls.Add(this.updateBtnTextBox, 1, 0);
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 315);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 1;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(732, 64);
+            this.tableLayoutPanel2.TabIndex = 1;
+            // 
+            // updateBtn
+            // 
+            this.updateBtn.Location = new System.Drawing.Point(3, 3);
+            this.updateBtn.Name = "updateBtn";
+            this.updateBtn.Size = new System.Drawing.Size(228, 58);
+            this.updateBtn.TabIndex = 1;
+            this.updateBtn.Text = "Módosítás";
+            this.updateBtn.UseVisualStyleBackColor = true;
+            this.updateBtn.Click += new System.EventHandler(this.updateBtn_Click);
+            // 
+            // deleteBoardBtn
+            // 
+            this.deleteBoardBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.deleteBoardBtn.Location = new System.Drawing.Point(490, 3);
+            this.deleteBoardBtn.Name = "deleteBoardBtn";
+            this.deleteBoardBtn.Size = new System.Drawing.Size(239, 58);
+            this.deleteBoardBtn.TabIndex = 0;
+            this.deleteBoardBtn.Text = "Törlés";
+            this.deleteBoardBtn.UseVisualStyleBackColor = true;
+            this.deleteBoardBtn.Click += new System.EventHandler(this.deleteBoardBtn_Click);
+            // 
+            // updateBtnTextBox
+            // 
+            this.updateBtnTextBox.AccessibleName = "";
+            this.updateBtnTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.updateBtnTextBox.Location = new System.Drawing.Point(237, 3);
+            this.updateBtnTextBox.Multiline = true;
+            this.updateBtnTextBox.Name = "updateBtnTextBox";
+            this.updateBtnTextBox.Size = new System.Drawing.Size(247, 58);
+            this.updateBtnTextBox.TabIndex = 2;
+            this.updateBtnTextBox.Text = "Új név:";
+            this.updateBtnTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.updateBtnTextBox.Click += new System.EventHandler(this.updateBtnTextBox_Click);
+            // 
             // UserBoards
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -168,9 +169,9 @@
             this.Name = "UserBoards";
             this.Text = "UserBoards";
             this.tableLayoutPanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
