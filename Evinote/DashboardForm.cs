@@ -20,6 +20,7 @@ namespace Evinote
 
             Theme.StyleDeleteButton(DeleteBtn);
             Theme.StyleDataGrid(dataGridView1);
+            Theme.StyleDataGrid(dataGridView2);
         }
 
         private async void DashboardForm_Load(object sender, EventArgs e)
@@ -27,55 +28,68 @@ namespace Evinote
             await LoadUsers();
         }
 
-        private async Task LoadUsers()
+private async Task LoadUsers()
+{
+    try
+    {
+        var response = await _client.GetAsync("http://localhost:5173/api/users");
+        var json = await response.Content.ReadAsStringAsync();
+
+        if (!response.IsSuccessStatusCode)
         {
-            try
+            MessageBox.Show("Hiba az API hívásnál");
+            return;
+        }
+
+        var users = JsonSerializer.Deserialize<List<UserDto>>(json,
+            new JsonSerializerOptions
             {
-                var response = await _client.GetAsync("http://localhost:5173/api/users");
-                var json = await response.Content.ReadAsStringAsync();
+                PropertyNameCaseInsensitive = true
+            });
 
-                if (!response.IsSuccessStatusCode)
-                {
-                    MessageBox.Show("Hiba az API hívásnál");
-                    return;
-                }
+        dataGridView1.Rows.Clear();
+        dataGridView2.Rows.Clear();
 
-                var users = JsonSerializer.Deserialize<List<UserDto>>(json,
-                    new JsonSerializerOptions
-                    {
-                        PropertyNameCaseInsensitive = true
-                    });
+        if (users == null)
+        {
+            MessageBox.Show("Null a users lista");
+            return;
+        }
 
-                dataGridView1.Rows.Clear();
+        foreach (var user in users)
+        {
+            DateTime created = user.created_at;
+            DateTime updated = user.updated_at;
 
-                if (users == null)
-                {
-                    MessageBox.Show("Null a users lista");
-                    return;
-                }
+            // MAIN USER TABLE
+            var rowIndex = dataGridView1.Rows.Add(
+                user.id,
+                user.username,
+                user.email,
+                created.ToLocalTime().ToString("yyyy.MM.dd"),
+                "Show sessions",
+                "Show boards"
+            );
 
-                foreach (var user in users)
-                {
-                    DateTime created = user.created_at;
-                    DateTime updated = user.updated_at;
+            dataGridView1.Rows[rowIndex].Tag = user;
 
-                    var rowIndex = dataGridView1.Rows.Add(
-                        user.id,
-                        user.username,
-                        user.email,
-                        created.ToLocalTime().ToString("yyyy.MM.dd"),
-                        "Show sessions",
-                        "Show boards"
-                    );
-
-                    dataGridView1.Rows[rowIndex].Tag = user;
-                }
-            }
-            catch (Exception ex)
+            // ADMIN LIST
+            if (user.username != null && user.role == "Admin")
             {
-                MessageBox.Show(ex.ToString());
+                var rowIndex2 = dataGridView2.Rows.Add(
+                    user.username,
+                    user.role
+                );
+                dataGridView2.Rows[rowIndex2].Tag = user;
+
             }
         }
+    }
+    catch (Exception ex)
+    {
+        MessageBox.Show(ex.ToString());
+    }
+}
 
         public async Task DeleteUser(int id)
         {
