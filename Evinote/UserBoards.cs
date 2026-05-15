@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using Newtonsoft.Json;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -57,8 +58,8 @@ namespace Evinote
                         return;
                     }
 
-                    var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
-                    var boards = JsonSerializer.Deserialize<List<BoardDto>>(raw, options) ?? new List<BoardDto>();
+                    //var boards = JsonConverter<List<BoardDto>>(raw) ?? new List<BoardDto>();
+                    var boards = JsonConvert.DeserializeObject<List<BoardDto>>(raw) ?? new List<BoardDto>();
 
                     dataGridView1.Rows.Clear();
 
@@ -76,7 +77,7 @@ namespace Evinote
                     }
                 }
             }
-            catch (JsonException ex)
+            catch (Newtonsoft.Json.JsonException ex)
             {
                 MessageBox.Show("JSON feldolgozási hiba! Valószínűleg nem érvényes adatot kaptunk a szervertől.\n" + ex.Message);
             }
@@ -185,7 +186,7 @@ namespace Evinote
                             {
                                 var url = $"http://localhost:5173/api/boards/{selectedBoard.Id}";
                                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Form1.ReadSavedApiKey());
-                                var content = new StringContent(JsonSerializer.Serialize(new { name = newName }), System.Text.Encoding.UTF8, "application/json");
+                                var content = new StringContent(System.Text.Json.JsonSerializer.Serialize(new { name = newName }), System.Text.Encoding.UTF8, "application/json");
                                 
                                 var request = new HttpRequestMessage(new HttpMethod("PATCH"), url)
                                 {
